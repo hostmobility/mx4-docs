@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Build from sources &mdash; MX-4 2.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="MX-4 2.0.0 documentation" href="index.html"/>
+        <link rel="next" title="MX-4’s hardware interfaces" href="interfaces/index.html"/>
+        <link rel="prev" title="Yocto/OE-core" href="build-yocto.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MX-4
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build-yocto.html">Yocto/OE-core</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Build from sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux-kernel">Linux kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#u-boot">U-boot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-update-image">Generate update image</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces/index.html">MX-4&#8217;s hardware interfaces</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MX-4</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Build from sources</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/build.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="build-from-sources">
+<span id="build"></span><h1>Build from sources<a class="headerlink" href="#build-from-sources" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="linux-kernel">
+<span id="build-linux"></span><h2>Linux kernel<a class="headerlink" href="#linux-kernel" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="u-boot">
+<span id="build-u-boot"></span><h2>U-boot<a class="headerlink" href="#u-boot" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="generate-update-image">
+<span id="build-gen-update-image"></span><h2>Generate update image<a class="headerlink" href="#generate-update-image" title="Permalink to this headline">¶</a></h2>
+<p>We provide a utility scripts to generate an update image that can be used update the firmware on the device. See <a class="reference internal" href="getting-started.html#getting-started-firmware-update"><span class="std std-ref">Firmware update</span></a></p>
+<p>Clone repository containing scripts (this is a private repository):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/hostmobility/mx4.git -b mx4-2.0
+</pre></div>
+</div>
+<p>Enter the repository:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd mx4
+</pre></div>
+</div>
+<p>To be able to generate an image you must have access to binaries (Linux kernel, u-boot, root filesystem). You can build them by following the instructions in <a class="reference internal" href="build-yocto.html#build-yocto"><span class="std std-ref">Yocto/OE-core</span></a>.</p>
+<p>To generate update image:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ./make_system.sh -t t30 -r ../Angstrom-console-hostmobility-image-glibc-ipk-v2016.12-mx4-t30.rootfs.tar.xz -k ../uImage
+</pre></div>
+</div>
+<p>A break down of the above arguments:</p>
+<ul class="simple">
+<li><strong>-t 30</strong> - This sets the system type to <strong>t30</strong> which is equivalent to MX-4 T30</li>
+<li><strong>-r</strong> - Path to root file-system tarball. This will be un-packed to generate an binary form depending on filesystem type. MX-4 T30 uses ext3. Most other products use NAND flash and UBI/UBIFS.</li>
+<li><strong>-k</strong> - Path to Linux kernel image.</li>
+</ul>
+<p>When you have succesully executed the script it shall have generated an deploy directory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>deploy/
+├── bin
+├── release
+└── rootfs
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>bin</strong> - Contains a copy of all input binaries</li>
+<li><strong>release</strong> - Contains the update image together with all scripts and files necessarry to re-create the update image</li>
+<li><strong>rootfs</strong> - Unpacked root file-system tarball</li>
+</ul>
+<p>Lets take a close look at the release directory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>deploy/release/
+├── boot.vfat
+├── mbr.bin
+├── production_rootfs.tar.bz2
+├── rootfs.ext3
+├── t30_hmupdate.img
+├── uImage
+└── update_tools
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>boot.vfat</strong> - Binary representation of &#8220;boot partition&#8221; containing Linux kernel image + dtb (only exists on devices that boot from eMMC)</li>
+<li><strong>mbr.bin</strong> - Partition table (only exists on devices that boot from eMMC)</li>
+<li><strong>production_rootfs.tar.bz2</strong> - Copy of input root file-system tarball</li>
+<li><strong>rootfs.ext3</strong> - Binary representation of root file-system</li>
+<li><strong>t30_hmupdate.img</strong> - This is the image that you can use to update your device (contains everything else that is in this folder). Name can vary depending on which system type is set. Always named hmupdate.img, but with a different prefix.</li>
+<li><strong>uImage</strong> - Copy of input Linux kernel image</li>
+<li><strong>update_tools</strong> - Scripts that are used to generate the t30_hmupdate.img above.</li>
+</ul>
+<p>The utility script does provide a lot of &#8220;switches&#8221; and all of them are optional. In teory you can create an update image that does not update anything:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ./make_system.sh
+Usage: make_system.sh
+    -e - Ship U-Boot Environment file
+    -k - Path to kernel binary
+    -p - Path to gziped bmp splash screen image
+    -P - Skip PIC upgrade
+    -r - Path to rootfs tar.gz generated with Yocto/OE-core
+    -t - system type (mx4, v61, c61, vcc, t20, t30, consat, ct, mil or gtt)
+    -u - Path to U-Boot binary
+
+Example: ./make_system.sh -t t20 -k &lt;path to kernel&gt; -b &lt;path to U-boot binary&gt; -r &lt;path to rootfs archive&gt;i
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="interfaces/index.html" class="btn btn-neutral float-right" title="MX-4’s hardware interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="build-yocto.html" class="btn btn-neutral" title="Yocto/OE-core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Host Mobility AB.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
