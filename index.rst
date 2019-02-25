@@ -20,5 +20,6 @@ Welcome to MX-4's documentation!
    build-yocto
    build
    interfaces/index
+   crosscompile
 
 
