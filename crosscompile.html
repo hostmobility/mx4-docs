@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Setup cross compile project with Eclipse &mdash; MX-4 2.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="MX-4 2.0.0 documentation" href="index.html"/>
+        <link rel="prev" title="Accelerometer" href="interfaces/acc.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MX-4
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build-yocto.html">Yocto/OE-core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build.html">Build from sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces/index.html">MX-4&#8217;s hardware interfaces</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Setup cross compile project with Eclipse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-eclipse-on-ubuntu-16-4">Install Eclipse on Ubuntu 16.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-custom-software-development-kit-sdk">Build custom software development kit (sdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-hello-word-application">Setup hello_word application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-machine-debugger">Setup machine debugger</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">MX-4</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Setup cross compile project with Eclipse</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/crosscompile.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setup-cross-compile-project-with-eclipse">
+<span id="crosscompile"></span><h1>Setup cross compile project with Eclipse<a class="headerlink" href="#setup-cross-compile-project-with-eclipse" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-eclipse-on-ubuntu-16-4">
+<h2>Install Eclipse on Ubuntu 16.4<a class="headerlink" href="#install-eclipse-on-ubuntu-16-4" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>First download Eclipse from <cite>Eclipse download &lt;https://www.eclipse.org/downloads/&gt;</cite> and java if not already installed (default-jre)</dt>
+<dd><ul class="first last">
+<li><p class="first">Install a debugger, if not already installed <em>Eclipse IDE for C/C++ developers</em>.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Optional Install a <em>Remote System Explorer</em></dt>
+<dd><ul class="first last simple">
+<li>Help-&gt;Install New Software...-&gt; &#8211;All Available Sites&#8211; -&gt; Mobile and Device Development or General Purpose Tools -&gt; Remote System Explorer.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="build-custom-software-development-kit-sdk">
+<h2>Build custom software development kit (sdk)<a class="headerlink" href="#build-custom-software-development-kit-sdk" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>source layers/openembedded-core/oe-init-build-env</li>
+<li>bitbake console-hostmobility-dev-image -c populate_sdk</li>
+<li>There will be a file output <em>angstrom-glibc-x86_64-armv7at2hf-neon-v2018.06-toolchain.sh</em> under deploy/sdk (file name can change over time and depend on target machine).</li>
+<li>Run that script file and follow those instructions.</li>
+<li>Now there should be a sysroot folder, an environment setup file , an site-config and one version file under the install location.</li>
+<li>Run environment-setup-armv7at2hf-neon-angstrom-linux-gnueabi.sh before you start Eclipse to include the environment variables to your project.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="setup-hello-word-application">
+<h2>Setup hello_word application<a class="headerlink" href="#setup-hello-word-application" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">Create a new C or C++ project. Select Empty Project or Hello World template and Cross GCC toolchain.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Then, in the toolbar, click Project and select Properties from the drop down menu.</dt>
+<dd><ul class="first last simple">
+<li>Navigate to <em>C/C++ Build &#8211;&gt; Settings</em></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Within the Tool Settings tab, select [All configurations] from the configurations list. Select Cross GCC Compiler from the Tool Settings menu.</dt>
+<dd><ul class="first last simple">
+<li>For Command, enter: <strong>${CC}</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Under Cross GCC Compiler, select Miscellaneous.</dt>
+<dd><ul class="first last simple">
+<li>For Other flags, enter: <strong>${CFLAGS} -c</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Select Cross G++ Compiler from the Tool Settings menu.</dt>
+<dd><ul class="first last simple">
+<li>For Command, enter: <strong>${CXX}</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Under Cross G++ Compiler, select Miscellaneous.</dt>
+<dd><ul class="first last simple">
+<li>For Other flags, enter: <strong>${CXXFLAGS} -c</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Select Cross G++ Linker from the Tool Settings menu.</dt>
+<dd><ul class="first last simple">
+<li>For Command, enter: <strong>${CXX}</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Under Cross G++ Linker, select Miscellaneous.</dt>
+<dd><ul class="first last simple">
+<li>For Linker flags, enter: <strong>${LDFLAGS}</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Select Cross GCC Assembler from the Tool Settings menu.</dt>
+<dd><ul class="first last simple">
+<li>For Command, enter: <strong>${AS}</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Other environment variables can be found in the <em>environment-setup-armv7at2hf-neon-angstrom-linux-gnueabi</em> file.</p>
+</li>
+<li><p class="first">For more information checkout <cite>Toradex Guide &lt;https://developer.toradex.com/getting-started/module-2-my-first-hello-world-in-c?som=apalis-imx6&amp;board=apalis-evaluation-board&gt;</cite></p>
+</li>
+<li><p class="first">and <cite>Toradex Guide &lt;https://developer.toradex.com/knowledge-base/linux-sdks&gt;</cite>.</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="setup-machine-debugger">
+<h2>Setup machine debugger<a class="headerlink" href="#setup-machine-debugger" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">First Run-&gt;Debug configurations...-&gt;c/c++ remote application-&gt;add (right click).</p>
+</li>
+<li><dl class="first docutils">
+<dt>Change connection to your machine.</dt>
+<dd><ul class="first last simple">
+<li>ssh <a class="reference external" href="mailto:root&#37;&#52;&#48;192&#46;168&#46;1&#46;200">root<span>&#64;</span>192<span>&#46;</span>168<span>&#46;</span>1<span>&#46;</span>200</a> is default (eth0) for Mx4.</li>
+<li>Test it with browse and change path to where you want it to execute.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Under debugger-&gt;change main-&gt;gdb debugger to <cite>arm-angstrom-linux-gnueabi-gdb</cite>.</p>
+</li>
+<li><p class="first"><strong>tip</strong> Add one debug and one Release (run configurations)</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="interfaces/acc.html" class="btn btn-neutral" title="Accelerometer" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Host Mobility AB.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

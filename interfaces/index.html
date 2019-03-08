@@ -13,8 +13,6 @@
 
   
   
-  
-  
 
   
 
@@ -32,9 +30,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="MX-4 2.0.0 documentation" href="../index.html"/>
         <link rel="next" title="Serial ports" href="serial.html"/>
         <link rel="prev" title="Build from sources" href="../build.html"/> 
@@ -46,7 +41,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -87,20 +81,17 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../build-yocto.html">Yocto/OE-core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../build.html">Build from sources</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MX-4&#8217;s hardware interfaces</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">MX-4&#8217;s hardware interfaces</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="serial.html">Serial ports</a></li>
 <li class="toctree-l2"><a class="reference internal" href="can.html">Controller Area Network (CAN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j1708.html">J1708</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lin.html">Local Interconnect Network (LIN)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modem.html">Cellular Modem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modem.html">Cellular Modem (PLS8-E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi.html">WiFi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="digio.html">Digital I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analogio.html">Analog I/O</a></li>
@@ -108,6 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="acc.html">Accelerometer</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../crosscompile.html">Setup cross compile project with Eclipse</a></li>
 </ul>
 
             
@@ -120,10 +112,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">MX-4</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MX-4</a>
       </nav>
 
 
@@ -132,40 +122,23 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-      <li>MX-4&#8217;s hardware interfaces</li>
-    
-    
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>MX-4&#8217;s hardware interfaces</li>
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="../_sources/interfaces/index.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="../_sources/interfaces/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -179,7 +152,7 @@
 <li class="toctree-l1"><a class="reference internal" href="can.html">Controller Area Network (CAN)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="j1708.html">J1708</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lin.html">Local Interconnect Network (LIN)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modem.html">Cellular Modem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modem.html">Cellular Modem (PLS8-E)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wifi.html">WiFi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digio.html">Digital I/O</a></li>
 <li class="toctree-l1"><a class="reference internal" href="analogio.html">Analog I/O</a></li>
@@ -191,18 +164,15 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="serial.html" class="btn btn-neutral float-right" title="Serial ports" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="serial.html" class="btn btn-neutral float-right" title="Serial ports" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../build.html" class="btn btn-neutral" title="Build from sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../build.html" class="btn btn-neutral" title="Build from sources" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -236,8 +206,7 @@
             VERSION:'2.0.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

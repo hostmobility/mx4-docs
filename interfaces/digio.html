@@ -13,8 +13,6 @@
 
   
   
-  
-  
 
   
 
@@ -32,9 +30,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="MX-4 2.0.0 documentation" href="../index.html"/>
         <link rel="up" title="MX-4’s hardware interfaces" href="index.html"/>
         <link rel="next" title="Analog I/O" href="analogio.html"/>
@@ -47,7 +42,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -88,10 +82,7 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../build-yocto.html">Yocto/OE-core</a></li>
@@ -101,14 +92,15 @@
 <li class="toctree-l2"><a class="reference internal" href="can.html">Controller Area Network (CAN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j1708.html">J1708</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lin.html">Local Interconnect Network (LIN)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modem.html">Cellular Modem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modem.html">Cellular Modem (PLS8-E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi.html">WiFi</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Digital I/O</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Digital I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analogio.html">Analog I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="led.html">LED</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acc.html">Accelerometer</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../crosscompile.html">Setup cross compile project for Eclipse</a></li>
 </ul>
 
             
@@ -121,10 +113,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">MX-4</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MX-4</a>
       </nav>
 
 
@@ -133,42 +123,25 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="index.html">MX-4&#8217;s hardware interfaces</a> &raquo;</li>
-        
-      <li>Digital I/O</li>
-    
-    
+      
+    <li>Digital I/O</li>
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="../_sources/interfaces/digio.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="../_sources/interfaces/digio.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -178,21 +151,21 @@
 <span id="digio"></span><h1>Digital I/O<a class="headerlink" href="#digital-i-o" title="Permalink to this headline">¶</a></h1>
 <p>For digital I/O we utilize the <a class="reference external" href="https://www.kernel.org/doc/Documentation/gpio/sysfs.txt">GPIO Sysfs interface for Userspace</a>.</p>
 <p>To get a list available ports:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cat /sys/kernel/debug/gpio | grep -i digital
+<div class="highlight-python"><div class="highlight"><pre>$ cat /sys/kernel/debug/gpio | grep -i digital
 </pre></div>
 </div>
 <p>Above command will produce a very long list of I/O ports and your device probably does not have hardware support for all of them. For details consult the technical manual of your specific device.</p>
 <p>Read the value if a single digital input:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cat /sys/class/gpio/gpio23/value
+<div class="highlight-python"><div class="highlight"><pre>$ cat /sys/class/gpio/gpio23/value
 </pre></div>
 </div>
 <p>Write a value to a single digital output:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ echo 1 &gt; /sys/class/gpio/gpio238/value
+<div class="highlight-python"><div class="highlight"><pre>$ echo 1 &gt; /sys/class/gpio/gpio238/value
 </pre></div>
 </div>
 <p>All digital inputs can generate an &#8220;event&#8221; on a specific change. The changes are &#8220;rising&#8221;, &#8220;falling&#8221; or &#8220;both&#8221;</p>
 <p>To setup an digital input to generate an event:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ echo rising &gt; /sys/class/gpio/gpio23/edge
+<div class="highlight-python"><div class="highlight"><pre>$ echo rising &gt; /sys/class/gpio/gpio23/edge
 </pre></div>
 </div>
 <p>To listen for event you need to run <a class="reference external" href="http://man7.org/linux/man-pages/man2/poll.2.html">poll(2)</a> on the &#8220;value&#8221; file of that specific input. See <a class="reference external" href="https://github.com/hostmobility/file-poll">example application</a></p>
@@ -200,18 +173,15 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="analogio.html" class="btn btn-neutral float-right" title="Analog I/O" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="analogio.html" class="btn btn-neutral float-right" title="Analog I/O" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="wifi.html" class="btn btn-neutral" title="WiFi" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="wifi.html" class="btn btn-neutral" title="WiFi" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -245,8 +215,7 @@
             VERSION:'2.0.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

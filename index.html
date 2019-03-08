@@ -13,8 +13,6 @@
 
   
   
-  
-  
 
   
 
@@ -32,9 +30,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="MX-4 2.0.0 documentation" href="#"/>
         <link rel="next" title="Introduction" href="introduction.html"/> 
 
@@ -45,7 +40,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -86,15 +80,13 @@
           
             
             
-              
-            
-            
-              <ul>
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build-yocto.html">Yocto/OE-core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build.html">Build from sources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interfaces/index.html">MX-4&#8217;s hardware interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crosscompile.html">Setup cross compile project with Eclipse</a></li>
 </ul>
 
             
@@ -107,10 +99,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">MX-4</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">MX-4</a>
       </nav>
 
 
@@ -119,40 +109,23 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="#">Docs</a> &raquo;</li>
-        
-      <li>Welcome to MX-4&#8217;s documentation!</li>
-    
-    
+    <li><a href="#">Docs</a> &raquo;</li>
+      
+    <li>Welcome to MX-4&#8217;s documentation!</li>
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -185,12 +158,19 @@
 <li class="toctree-l2"><a class="reference internal" href="interfaces/can.html">Controller Area Network (CAN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interfaces/j1708.html">J1708</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interfaces/lin.html">Local Interconnect Network (LIN)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interfaces/modem.html">Cellular Modem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces/modem.html">Cellular Modem (PLS8-E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interfaces/wifi.html">WiFi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interfaces/digio.html">Digital I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interfaces/analogio.html">Analog I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interfaces/led.html">LED</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interfaces/acc.html">Accelerometer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crosscompile.html">Setup cross compile project with Eclipse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="crosscompile.html#install-eclipse-on-ubuntu-16-4">Install Eclipse on Ubuntu 16.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crosscompile.html#build-custom-software-development-kit-sdk">Build custom software development kit (sdk)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crosscompile.html#setup-hello-word-application">Setup hello_word application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crosscompile.html#setup-machine-debugger">Setup machine debugger</a></li>
 </ul>
 </li>
 </ul>
@@ -199,15 +179,12 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -242,8 +219,7 @@
             VERSION:'2.0.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

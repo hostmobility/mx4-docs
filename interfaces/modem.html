@@ -8,11 +8,9 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cellular Modem &mdash; MX-4 2.0.0 documentation</title>
+  <title>Cellular Modem (PLS8-E) &mdash; MX-4 2.0.0 documentation</title>
   
 
-  
-  
   
   
 
@@ -32,9 +30,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="MX-4 2.0.0 documentation" href="../index.html"/>
         <link rel="up" title="MX-4’s hardware interfaces" href="index.html"/>
         <link rel="next" title="WiFi" href="wifi.html"/>
@@ -47,7 +42,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -88,10 +82,7 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../build-yocto.html">Yocto/OE-core</a></li>
@@ -101,7 +92,13 @@
 <li class="toctree-l2"><a class="reference internal" href="can.html">Controller Area Network (CAN)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j1708.html">J1708</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lin.html">Local Interconnect Network (LIN)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Cellular Modem</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Cellular Modem (PLS8-E)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#production-settings-default">Production settings(default)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-wvdail-to-get-a-broadband-connection">Use Wvdail to get a broadband connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-gps-simple-commands">Use GPS (simple commands)</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="wifi.html">WiFi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="digio.html">Digital I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analogio.html">Analog I/O</a></li>
@@ -109,6 +106,7 @@
 <li class="toctree-l2"><a class="reference internal" href="acc.html">Accelerometer</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../crosscompile.html">Setup cross compile project with Eclipse</a></li>
 </ul>
 
             
@@ -121,10 +119,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">MX-4</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MX-4</a>
       </nav>
 
 
@@ -133,65 +129,304 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="index.html">MX-4&#8217;s hardware interfaces</a> &raquo;</li>
-        
-      <li>Cellular Modem</li>
-    
-    
+      
+    <li>Cellular Modem (PLS8-E)</li>
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="../_sources/interfaces/modem.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="../_sources/interfaces/modem.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cellular-modem">
-<span id="modem"></span><h1>Cellular Modem<a class="headerlink" href="#cellular-modem" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="cellular-modem-pls8-e">
+<span id="modem"></span><h1>Cellular Modem (PLS8-E)<a class="headerlink" href="#cellular-modem-pls8-e" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt><strong>Activate modem</strong></dt>
+<dd><ul class="first last simple">
+<li>echo 1 &gt; /opt/hm/pic_attributes/ctrl_modem_on</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Verify modem</strong></dt>
+<dd><ul class="first last simple">
+<li>/opt/hm/modem_status.sh</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Activate simple read</strong></dt>
+<dd><ul class="first last simple">
+<li>cat /dev/ttyACM2</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Simple write commands</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>echo &#8220;AT+CFUN?&#8221; &gt; /dev/ttyACM2</dt>
+<dd><ul class="first last simple">
+<li>modem status</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>echo &#8220;at+COPS?&#8221; &gt; /dev/ttyACM2</dt>
+<dd><ul class="first last simple">
+<li>Operator selection</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="production-settings-default">
+<h2>Production settings(default)<a class="headerlink" href="#production-settings-default" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt><strong>In some cases the modem AT command channel is not setup then manually send this commands:</strong></dt>
+<dd><ul class="first last">
+<li><p class="first">echo &#8220;at^ssrvset=actsrvset&#8221;                    &gt; /dev/ttyACM1</p>
+</li>
+<li><p class="first">echo &#8220;^SSRVSET: 10&#8221;                            &gt; /dev/ttyACM1</p>
+</li>
+<li><p class="first">echo &#8220;at^scfg=MEShutdown/OnIgnition,on&#8221;        &gt; /dev/ttyACM1</p>
+</li>
+<li><p class="first">echo &#8220;AT^SSRVSET=usbcomp,10,0061&#8221;              &gt; /dev/ttyACM1</p>
+</li>
+<li><p class="first">echo &#8220;AT^SSRVSET=srvmap,10,RSA,USB0,MUX0&#8221;      &gt; /dev/ttyACM1</p>
+</li>
+<li><p class="first">echo &#8220;AT^SSRVSET=srvmap,10,NMEA,USB1,MUX1&#8221;     &gt; /dev/ttyACM1</p>
+</li>
+<li><p class="first">echo &#8220;AT^SSRVSET=srvmap,10,APP,USB2,MUX2&#8221;      &gt; /dev/ttyACM1</p>
+</li>
+<li><p class="first">echo &#8220;AT^SSRVSET=srvmap,10,MDM,USB3,MUX3&#8221;      &gt; /dev/ttyACM1</p>
+</li>
+<li><p class="first">echo &#8220;AT^SSRVSET=actSrvSet, 10&#8221;                &gt; /dev/ttyACM1</p>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Check the result.</strong></dt>
+<dd><ul class="first last simple">
+<li>echo &#8220;AT^SSRVSET?&#8221;                             &gt; /dev/ttyACM1</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Reset the modem to activate the new settings.</strong></dt>
+<dd><ul class="first last simple">
+<li>echo &#8220;AT+CFUN=1,1?&#8221;                            &gt; /dev/ttyACM1</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>The result ACM map is:</dt>
+<dd><ul class="first last simple">
+<li>Radio /dev/ttyACM0</li>
+<li>GPS   /dev/ttyACM1</li>
+<li>AT commands  /dev/ttyACM2</li>
+<li>Modem /dev/ttyACM3</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="use-wvdail-to-get-a-broadband-connection">
+<h2>Use Wvdail to get a broadband connection<a class="headerlink" href="#use-wvdail-to-get-a-broadband-connection" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">Optional <em>ln -s /dev/ttyACM2 /dev/modem</em></p>
+</li>
+<li><p class="first">Run wvdailconf</p>
+</li>
+<li><dl class="first docutils">
+<dt>vi /etc/wvdail.conf</dt>
+<dd><ul class="first last simple">
+<li>Init1 = ATZ</li>
+<li>Init2 = AT+CFUN=1</li>
+<li>Init3 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</li>
+<li>Init4 = AT+CGDCONT=1,&#8221;IP&#8221;,&#8221;internet.telenor.se&#8221;</li>
+<li>Modem Type = USB Modem</li>
+<li>ISDN = 0</li>
+<li>Phone = <a href="#id1"><span class="problematic" id="id2">*</span></a>99#</li>
+<li>Modem = /dev/ttyACM3</li>
+<li>Username=;</li>
+<li>Password=;</li>
+<li>Baud = 460800</li>
+<li>Stupid Mode = yes</li>
+<li>Auto Reconnect = on</li>
+<li>New PPPD = yes</li>
+<li>Auto DNS = 1</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Run <em>wvdail &amp;</em></p>
+</li>
+<li><p class="first">Test <em>ping 8.8.8.8</em></p>
+</li>
+<li><dl class="first docutils">
+<dt>Output could look like this:</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference external" href="mailto:root&#37;&#52;&#48;mx4-v61">root<span>&#64;</span>mx4-v61</a>:~# wvdial &amp;</td>
+</tr>
+<tr class="row-even"><td>[1] 599</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="mailto:root&#37;&#52;&#48;mx4-v61">root<span>&#64;</span>mx4-v61</a>:~# &#8211;&gt; WvDial: Internet dialer version 1.61</td>
+</tr>
+<tr class="row-even"><td>&#8211;&gt; Initializing modem.</td>
+</tr>
+<tr class="row-odd"><td>&#8211;&gt; Sending: ATZ</td>
+</tr>
+<tr class="row-even"><td>ATZ</td>
+</tr>
+<tr class="row-odd"><td>OK</td>
+</tr>
+<tr class="row-even"><td>&#8211;&gt; Sending: AT+CFUN=1</td>
+</tr>
+<tr class="row-odd"><td>AT+CFUN=1</td>
+</tr>
+<tr class="row-even"><td>OK</td>
+</tr>
+<tr class="row-odd"><td>&#8211;&gt; Sending: ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</td>
+</tr>
+<tr class="row-even"><td>ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</td>
+</tr>
+<tr class="row-odd"><td>OK</td>
+</tr>
+<tr class="row-even"><td>&#8211;&gt; Sending: AT+CGDCONT=1,&#8221;IP&#8221;,&#8221;internet.telenor.se&#8221;</td>
+</tr>
+<tr class="row-odd"><td>AT+CGDCONT=1,&#8221;IP&#8221;,&#8221;internet.telenor.se&#8221;</td>
+</tr>
+<tr class="row-even"><td>OK</td>
+</tr>
+<tr class="row-odd"><td>&#8211;&gt; Modem initialized.</td>
+</tr>
+<tr class="row-even"><td>&#8211;&gt; Sending: ATDT*99#</td>
+</tr>
+<tr class="row-odd"><td>&#8211;&gt; Waiting for carrier.</td>
+</tr>
+<tr class="row-even"><td>ATDT*99#</td>
+</tr>
+<tr class="row-odd"><td>CONNECT 100000000</td>
+</tr>
+<tr class="row-even"><td>&#8211;&gt; Carrier detected.  Starting PPP immediately.</td>
+</tr>
+<tr class="row-odd"><td>&#8211;&gt; Starting pppd at Tue Feb  5 10:46:34 2019</td>
+</tr>
+<tr class="row-even"><td>&#8211;&gt; Pid of pppd: 600</td>
+</tr>
+<tr class="row-odd"><td>&#8211;&gt; Using interface ppp0</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="mailto:root&#37;&#52;&#48;mx4-v61">root<span>&#64;</span>mx4-v61</a>:~# &#8211;&gt; local  IP address 46.194.12.163</td>
+</tr>
+<tr class="row-odd"><td>&#8211;&gt; remote IP address 10.64.64.64</td>
+</tr>
+<tr class="row-even"><td>&#8211;&gt; primary   DNS address 195.54.122.211</td>
+</tr>
+<tr class="row-odd"><td>&#8211;&gt; secondary DNS address 195.54.122.221</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="use-gps-simple-commands">
+<h2>Use GPS (simple commands)<a class="headerlink" href="#use-gps-simple-commands" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>This is just one way of many ways to setup and get gps position data.</dt>
+<dd><ul class="first simple">
+<li>echo &#8220;AT^SGPSC=?&#8221;                      &gt; /dev/ttyACM2</li>
+<li>echo &#8220;AT^SGPSC=&#8221;Engine&#8221;,0&#8221;             &gt; /dev/ttyACM2</li>
+<li>echo &#8220;AT^SBNW=agps,-1&#8221;                 &gt; /dev/ttyACM2</li>
+<li>echo &#8220;AT^SGPSC=&#8221;Nmea/Freq&#8221;,1&#8221;          &gt; /dev/ttyACM2</li>
+<li>echo &#8220;AT^SGPSC=&#8221;Nmea/Glonasst&#8221;,on&#8221;     &gt; /dev/ttyACM2</li>
+<li>echo &#8220;AT^SGPSC=&#8221;Nmea/Output&#8221;,on&#8221;       &gt; /dev/ttyACM2</li>
+<li>echo &#8220;AT^SGPSC=&#8221;Nmea/Urc&#8221;,off&#8221;         &gt; /dev/ttyACM2</li>
+<li>echo &#8220;AT^SGPSC=&#8221;Power/Antenna&#8221;,auto&#8221;   &gt; /dev/ttyACM2</li>
+<li>echo &#8220;AT^SGPSC=&#8221;Engine&#8221;,1&#8221;             &gt; /dev/ttyACM2</li>
+<li>echo &#8220;AT^SGPSC?&#8221;                       &gt; /dev/ttyACM2</li>
+<li>cat /dev/ttyACM1 &amp; <a href="#id3"><span class="problematic" id="id4">**</span></a>or**gps-parser /dev/ttyACM1</li>
+<li>Output example (gps-parser)</li>
+</ul>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>+GPRMC: Fix Time: 19222 12:37:9 Lat: 57.40.431402, Long: 12.0.831634 Speed: 0</td>
+</tr>
+<tr class="row-even"><td>+GPRMC: Fix Time: 19222 12:37:10 Lat: 57.40.431402, Long: 12.0.831650 Speed: 0</td>
+</tr>
+<tr class="row-odd"><td>+GPRMC: Fix Time: 19222 12:37:11 Lat: 57.40.431401, Long: 12.0.831660 Speed: 0</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
-           </div>
-           <div class="articleComments">
-            
            </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="wifi.html" class="btn btn-neutral float-right" title="WiFi" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="wifi.html" class="btn btn-neutral float-right" title="WiFi" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="lin.html" class="btn btn-neutral" title="Local Interconnect Network (LIN)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="lin.html" class="btn btn-neutral" title="Local Interconnect Network (LIN)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -225,8 +460,7 @@
             VERSION:'2.0.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

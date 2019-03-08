@@ -13,8 +13,6 @@
 
   
   
-  
-  
 
   
 
@@ -32,9 +30,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="MX-4 2.0.0 documentation" href="../index.html"/>
         <link rel="up" title="MX-4’s hardware interfaces" href="index.html"/>
         <link rel="next" title="J1708" href="j1708.html"/>
@@ -47,7 +42,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -88,24 +82,21 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../build-yocto.html">Yocto/OE-core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../build.html">Build from sources</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">MX-4&#8217;s hardware interfaces</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="serial.html">Serial ports</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Controller Area Network (CAN)</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Controller Area Network (CAN)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#utilities">Utilities</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="j1708.html">J1708</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lin.html">Local Interconnect Network (LIN)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modem.html">Cellular Modem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modem.html">Cellular Modem (PLS8-E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wifi.html">WiFi</a></li>
 <li class="toctree-l2"><a class="reference internal" href="digio.html">Digital I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analogio.html">Analog I/O</a></li>
@@ -113,6 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="acc.html">Accelerometer</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../crosscompile.html">Setup cross compile project for Eclipse</a></li>
 </ul>
 
             
@@ -125,10 +117,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">MX-4</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">MX-4</a>
       </nav>
 
 
@@ -137,42 +127,25 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="index.html">MX-4&#8217;s hardware interfaces</a> &raquo;</li>
-        
-      <li>Controller Area Network (CAN)</li>
-    
-    
+      
+    <li>Controller Area Network (CAN)</li>
       <li class="wy-breadcrumbs-aside">
         
-            
-            <a href="../_sources/interfaces/can.rst.txt" rel="nofollow"> View page source</a>
+          
+            <a href="../_sources/interfaces/can.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -185,7 +158,7 @@
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>The most common way to configure a CAN device is using the <a class="reference external" href="https://wiki.linuxfoundation.org/networking/iproute2">iproute2i</a> util.</p>
 <p>List of supported switches:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ ip link set can0 type can help
+<div class="highlight-python"><div class="highlight"><pre>$ ip link set can0 type can help
 Usage: ip link set DEVICE type can
         [ bitrate BITRATE [ sample-point SAMPLE-POINT] ] |
         [ tq TQ prop-seg PROP_SEG phase-seg1 PHASE-SEG1
@@ -218,17 +191,17 @@ Usage: ip link set DEVICE type can
 </pre></div>
 </div>
 <p>So to simply configure bitrate of one specific CAN controller:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ ifconfig can0 down
+<div class="highlight-python"><div class="highlight"><pre>$ ifconfig can0 down
 $ ip link set can0 type can bitrate 250000
 $ ifconfig can0 up
 </pre></div>
 </div>
 <p>To query a device for its current configuration:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ ip -d link show can0
+<div class="highlight-python"><div class="highlight"><pre>$ ip -d link show can0
 </pre></div>
 </div>
 <p>To query a device for statistics:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ ip -s link show can0
+<div class="highlight-python"><div class="highlight"><pre>$ ip -s link show can0
 </pre></div>
 </div>
 </div>
@@ -236,30 +209,27 @@ $ ifconfig can0 up
 <h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
 <p>You should also get familiar with <a class="reference external" href="https://github.com/linux-can/can-utils">can-utils</a>. This is a colllection of tools that are great to debug CAN networks, applications and should be used as a source of insperation if you are to write your own application that interacts with an CAN network.</p>
 <p>Dump all incoming data:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ candump -l any,0:0,#FFFFFFFF    (log error frames and also all data frames)
+<div class="highlight-python"><div class="highlight"><pre>$ candump -l any,0:0,#FFFFFFFF    (log error frames and also all data frames)
 </pre></div>
 </div>
 <p>Send a single CAN frame:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cansend can0 123#DEADBEEF
+<div class="highlight-python"><div class="highlight"><pre>$ cansend can0 123#DEADBEEF
 </pre></div>
 </div>
 </div>
 </div>
 
 
-           </div>
-           <div class="articleComments">
-            
            </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="j1708.html" class="btn btn-neutral float-right" title="J1708" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="j1708.html" class="btn btn-neutral float-right" title="J1708" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="serial.html" class="btn btn-neutral" title="Serial ports" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="serial.html" class="btn btn-neutral" title="Serial ports" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -293,8 +263,7 @@ $ ifconfig can0 up
             VERSION:'2.0.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
