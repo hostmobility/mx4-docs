@@ -17,7 +17,7 @@ Getting started
         - echo "AT+CFUN?" > /dev/ttyACM2
             - modem status
         - echo "at+COPS?" > /dev/ttyACM2
-            - TODO
+            - Operator selection
 
 Production settings(default)
 ----------------------------
@@ -66,57 +66,86 @@ Use Wvdail to get a broadband connection
         - Auto DNS = 1
     - Run *wvdail &*
     - Test *ping 8.8.8.8*
-    - Output could loock like this:
-        root@mx4-v61:~# wvdial &
-        [1] 599
-        root@mx4-v61:~# --> WvDial: Internet dialer version 1.61
-        --> Initializing modem.
-        --> Sending: ATZ
-        ATZ
-        OK
-        --> Sending: AT+CFUN=1
-        AT+CFUN=1
-        OK
-        --> Sending: ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
-        ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
-        OK
-        --> Sending: AT+CGDCONT=1,"IP","internet.telenor.se"
-        AT+CGDCONT=1,"IP","internet.telenor.se"
-        OK
-        --> Modem initialized.
-        --> Sending: ATDT*99#
-        --> Waiting for carrier.
-        ATDT*99#
-        CONNECT 100000000
-        --> Carrier detected.  Starting PPP immediately.
-        --> Starting pppd at Tue Feb  5 10:46:34 2019
-        --> Pid of pppd: 600
-        --> Using interface ppp0
-
-        root@mx4-v61:~# --> local  IP address 46.194.12.163
-        --> remote IP address 10.64.64.64
-        --> primary   DNS address 195.54.122.211
-        --> secondary DNS address 195.54.122.221
+    - Output could look like this:
+        +-----------------------------------------------------------+
+        |root@mx4-v61:~# wvdial &                                   |
+        +-----------------------------------------------------------+
+        |[1] 599                                                    |
+        +-----------------------------------------------------------+
+        |root@mx4-v61:~# --> WvDial: Internet dialer version 1.61   |
+        +-----------------------------------------------------------+
+        |--> Initializing modem.                                    |
+        +-----------------------------------------------------------+
+        |--> Sending: ATZ                                           |
+        +-----------------------------------------------------------+
+        |ATZ                                                        |
+        +-----------------------------------------------------------+
+        |OK                                                         |
+        +-----------------------------------------------------------+
+        |--> Sending: AT+CFUN=1                                     |
+        +-----------------------------------------------------------+
+        |AT+CFUN=1                                                  |
+        +-----------------------------------------------------------+
+        |OK                                                         |
+        +-----------------------------------------------------------+
+        |--> Sending: ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0             |
+        +-----------------------------------------------------------+
+        |ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0                          |
+        +-----------------------------------------------------------+
+        |OK                                                         |
+        +-----------------------------------------------------------+
+        |--> Sending: AT+CGDCONT=1,"IP","internet.telenor.se"       |
+        +-----------------------------------------------------------+
+        |AT+CGDCONT=1,"IP","internet.telenor.se"                    |
+        +-----------------------------------------------------------+
+        |OK                                                         |
+        +-----------------------------------------------------------+
+        |--> Modem initialized.                                     |
+        +-----------------------------------------------------------+
+        |--> Sending: ATDT*99#                                      |
+        +-----------------------------------------------------------+
+        |--> Waiting for carrier.                                   |
+        +-----------------------------------------------------------+
+        |ATDT*99#                                                   |
+        +-----------------------------------------------------------+
+        |CONNECT 100000000                                          |
+        +-----------------------------------------------------------+
+        |--> Carrier detected.  Starting PPP immediately.           |
+        +-----------------------------------------------------------+
+        |--> Starting pppd at Tue Feb  5 10:46:34 2019              |
+        +-----------------------------------------------------------+
+        |--> Pid of pppd: 600                                       |
+        +-----------------------------------------------------------+
+        |--> Using interface ppp0                                   |
+        +-----------------------------------------------------------+
+        |root@mx4-v61:~# --> local  IP address 46.194.12.163        |
+        +-----------------------------------------------------------+
+        |--> remote IP address 10.64.64.64                          |
+        +-----------------------------------------------------------+
+        |--> primary   DNS address 195.54.122.211                   |
+        +-----------------------------------------------------------+
+        |--> secondary DNS address 195.54.122.221                   |
+        +-----------------------------------------------------------+
 
 Use GPS (simple commands)
 -------------------------
     - This is just one way of many ways to setup and get gps position data.
-    echo "AT^SGPSC=?"                      > /dev/ttyACM2
-    echo "AT^SGPSC="Engine",0"             > /dev/ttyACM2
-    echo "AT^SBNW=agps,-1"                 > /dev/ttyACM2
-    echo "AT^SGPSC="Nmea/Freq",1"          > /dev/ttyACM2
-    echo "AT^SGPSC="Nmea/Glonasst",on"     > /dev/ttyACM2
-    echo "AT^SGPSC="Nmea/Output",on"       > /dev/ttyACM2
-    echo "AT^SGPSC="Nmea/Urc",off"         > /dev/ttyACM2
-    echo "AT^SGPSC="Power/Antenna",auto"   > /dev/ttyACM2
-    echo "AT^SGPSC="Engine",1"             > /dev/ttyACM2
-    echo "AT^SGPSC?"                       > /dev/ttyACM2
-    cat /dev/ttyACM1 &
-    or
-    gps-parser /dev/ttyACM1
-
-    Output example (gps-parser)
-
-        +GPRMC: Fix Time: 19222 12:37:9 Lat: 57.40.431402, Long: 12.0.831634 Speed: 0
-        +GPRMC: Fix Time: 19222 12:37:10 Lat: 57.40.431402, Long: 12.0.831650 Speed: 0
-        +GPRMC: Fix Time: 19222 12:37:11 Lat: 57.40.431401, Long: 12.0.831660 Speed: 0
+        - echo "AT^SGPSC=?"                      > /dev/ttyACM2
+        - echo "AT^SGPSC="Engine",0"             > /dev/ttyACM2
+        - echo "AT^SBNW=agps,-1"                 > /dev/ttyACM2
+        - echo "AT^SGPSC="Nmea/Freq",1"          > /dev/ttyACM2
+        - echo "AT^SGPSC="Nmea/Glonasst",on"     > /dev/ttyACM2
+        - echo "AT^SGPSC="Nmea/Output",on"       > /dev/ttyACM2
+        - echo "AT^SGPSC="Nmea/Urc",off"         > /dev/ttyACM2
+        - echo "AT^SGPSC="Power/Antenna",auto"   > /dev/ttyACM2
+        - echo "AT^SGPSC="Engine",1"             > /dev/ttyACM2
+        - echo "AT^SGPSC?"                       > /dev/ttyACM2
+        - cat /dev/ttyACM1 & **or**gps-parser /dev/ttyACM1
+        - Output example (gps-parser)
+        +-------------------------------------------------------------------------------+
+        |+GPRMC: Fix Time: 19222 12:37:9 Lat: 57.40.431402, Long: 12.0.831634 Speed: 0  |
+        +-------------------------------------------------------------------------------+
+        |+GPRMC: Fix Time: 19222 12:37:10 Lat: 57.40.431402, Long: 12.0.831650 Speed: 0 |
+        +-------------------------------------------------------------------------------+
+        |+GPRMC: Fix Time: 19222 12:37:11 Lat: 57.40.431401, Long: 12.0.831660 Speed: 0 |
+        +-------------------------------------------------------------------------------+

@@ -1,7 +1,7 @@
 .. _crosscompile:
 
 =======================================
-Setup cross compile project for Eclipse
+Setup cross compile project with Eclipse
 =======================================
 
 
