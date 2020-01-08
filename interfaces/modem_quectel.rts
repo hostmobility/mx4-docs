@@ -1,0 +1,137 @@
+.. _modem_q:
+
+==============
+Cellular Modem (Quectel)
+==============
+
+Getting started
+---------------
+
+    - **Activate modem**
+        - echo 1 > /opt/hm/pic_attributes/ctrl_modem_on
+    - **Verify modem**
+        - /opt/hm/modem_status.sh
+    - **Activate simple read**
+        - cat /dev/ttyUSB2
+    - **Simple write commands**
+        - echo "AT+CFUN?" > /dev/ttyUSB2
+            - modem status
+        - echo "at+COPS?" > /dev/ttyUSB2
+            - Operator selection
+	- Default /dev/ttyUSBx		
+       - ttyUSB0 (DM port)
+       - ttyUSB1 (NEMA port)
+       - ttyUSB2 (AT port)
+       - ttyUSB3 (Modem port)	
+
+Production settings(default)
+----------------------------
+
+    - Sim card detect 
+	   - AT+QSIMDET=1,0
+	   - AT+CFUN=1,1 or other restart command
+	- Audio codec (TLV320AIC3104)
+	  - AT+QDAI=5,0,0,4,0,1
+	  - AT+CFUN=1,1 or other restart command
+	- GPS (not confirmed)
+	  - AT+QGPSCFG="autogps",1
+      - AT+QGPSCFG="nmeasrc",1
+
+Use Wvdail to get a broadband connection
+----------------------------------------
+    - Optional *ln -s /dev/ttyACM2 /dev/modem*
+    - Run wvdailconf
+    - vi /etc/wvdail.conf
+        - Init1 = ATZ
+        - Init2 = AT+CFUN=1
+        - Init3 = AT+CGDCONT=1,"IP","internet.telenor.se"
+        - Modem Type = USB Modem
+        - ISDN = 0
+        - Phone = *99#
+        - Modem = /dev/ttyUSB2
+        - Username=;
+        - Password=;
+        - Baud = 9600
+        - Stupid Mode = yes
+        - Auto Reconnect = on
+        - New PPPD = yes
+        - Auto DNS = 1
+    - Run *wvdail &*
+    - Test *ping 8.8.8.8*
+    - Output could look like this:
+        +-----------------------------------------------------------+
+        |root@mx4:~# wvdial &                                   |
+        +-----------------------------------------------------------+
+        |[1] 599                                                    |
+        +-----------------------------------------------------------+
+        |root@mx4-v61:~# --> WvDial: Internet dialer version 1.61   |
+        +-----------------------------------------------------------+
+        |--> Initializing modem.                                    |
+        +-----------------------------------------------------------+
+        |--> Sending: ATZ                                           |
+        +-----------------------------------------------------------+
+        |ATZ                                                        |
+        +-----------------------------------------------------------+
+        |OK                                                         |
+        +-----------------------------------------------------------+
+        |--> Sending: AT+CFUN=1                                     |
+        +-----------------------------------------------------------+
+        |AT+CFUN=1                                                  |
+        +-----------------------------------------------------------+
+        |OK                                                   |
+        +-----------------------------------------------------------+
+        |--> Sending: AT+CGDCONT=1,"IP","internet.telenor.se"       |
+        +-----------------------------------------------------------+
+        |AT+CGDCONT=1,"IP","internet.telenor.se"                    |
+        +-----------------------------------------------------------+
+        |OK                                                         |
+        +-----------------------------------------------------------+
+        |--> Modem initialized.                                     |
+        +-----------------------------------------------------------+
+        |--> Sending: ATDT*99#                                      |
+        +-----------------------------------------------------------+
+        |--> Waiting for carrier.                                   |
+        +-----------------------------------------------------------+
+        |ATDT*99#                                                   |
+        +-----------------------------------------------------------+
+        |CONNECT 100000000                                          |
+        +-----------------------------------------------------------+
+        |--> Carrier detected.  Starting PPP immediately.           |
+        +-----------------------------------------------------------+
+        |--> Starting pppd at Mon Dec 16 12:43:43 2019              |
+        +-----------------------------------------------------------+
+        |--> Pid of pppd: 1317                                      |
+        +-----------------------------------------------------------+
+        |--> Using interface ppp0                                   |
+        +-----------------------------------------------------------+
+        |--> local  IP address 46.194.155.114                       |
+        +-----------------------------------------------------------+
+        |--> remote IP address 10.64.64.64                          |
+        +-----------------------------------------------------------+
+        |--> primary   DNS address 195.54.122.211                   |
+        +-----------------------------------------------------------+
+        |--> secondary DNS address 195.54.122.221                   |
+        +-----------------------------------------------------------+
+   - ping 8.8.8.8
+      - 64 bytes from 8.8.8.8: seq=0 ttl=55 time=55.250 ms
+Use GPS (simple commands)
+-------------------------
+    - This is just one way of many ways to setup and get gps position data.
+        - AT+QGPS=1 (Turn on  GNSSengine)
+        - AT+QGPSEND (Turn off GNSSengine)
+        - Output example (gps-parser) or AT+QGPSLOC=? 
+        +-------------------------------------------------------------------------------+
+        |+GPRMC: Fix Time: 19222 12:37:9 Lat: 57.40.431402, Long: 12.0.831634 Speed: 0  |
+        +-------------------------------------------------------------------------------+
+        |+GPRMC: Fix Time: 19222 12:37:10 Lat: 57.40.431402, Long: 12.0.831650 Speed: 0 |
+        +-------------------------------------------------------------------------------+
+        |+GPRMC: Fix Time: 19222 12:37:11 Lat: 57.40.431401, Long: 12.0.831660 Speed: 0 |
+        +-------------------------------------------------------------------------------+
+Answer call
+-------------------------
+ATV1
+ATA
+
+Change error code numbers to text
+-------------------------
+AT+CMEE=2
