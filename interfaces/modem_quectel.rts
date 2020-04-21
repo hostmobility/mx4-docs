@@ -8,7 +8,9 @@ Getting started
 ---------------
 
     - **Activate modem**
-        - echo 1 > /opt/hm/pic_attributes/ctrl_modem_on
+        - echo 1 > /opt/hm/pic_attributes/ctrl_modem_on (PWR_KEY)
+	- echo 0 > /opt/hm/pic_attributes/ctrl_modem_ign (RESET_N)
+	  - ctrl_modem_ign active reset if 1.
     - **Verify modem**
         - /opt/hm/modem_status.sh
     - **Activate simple read**
@@ -28,15 +30,17 @@ Production settings(default)
 ----------------------------
 
     - Sim card detect 
-	   - AT+QSIMDET=1,0
-	   - AT+CFUN=1,1 or other restart command
-	- Audio codec (TLV320AIC3104)
-	  - AT+QDAI=5,0,0,4,0,1
-	  - AT+CFUN=1,1 or other restart command
-	- GPS (not confirmed)
-	  - AT+QGPSCFG="autogps",1
+      - AT+QSIMDET=1,0 
+        - Need restart to take affect
+      - AT+QSIMSTAT?
+        - 0 Off, 1 On first parameter
+    - Audio codec (TLV320AIC3104)
+      - AT+QDAI=5,0,0,4,0,1
+    - GPS (not confirmed)
+      - AT+QGPSCFG="autogps",1
       - AT+QGPSCFG="nmeasrc",1
-
+    - AT+CFUN=1,1 or other restart command to make the permanent settings
+    
 Use Wvdail to get a broadband connection
 ----------------------------------------
     - Optional *ln -s /dev/ttyACM2 /dev/modem*
@@ -114,12 +118,17 @@ Use Wvdail to get a broadband connection
         +-----------------------------------------------------------+
    - ping 8.8.8.8
       - 64 bytes from 8.8.8.8: seq=0 ttl=55 time=55.250 ms
+ 
+ Or using pppd
+  - see https://github.com/hostmobility/mx4-wiki#modem
+      
 Use GPS (simple commands)
 -------------------------
     - This is just one way of many ways to setup and get gps position data.
         - AT+QGPS=1 (Turn on  GNSSengine)
+	- AT+QGPSCFG="autogps",1
         - AT+QGPSEND (Turn off GNSSengine)
-        - Output example (gps-parser) or AT+QGPSLOC=? 
+        - Output example gps-parser /dev/ttyUSB1 or AT+QGPSLOC? (AT+QGPSLOC=latitude)
         +-------------------------------------------------------------------------------+
         |+GPRMC: Fix Time: 19222 12:37:9 Lat: 57.40.431402, Long: 12.0.831634 Speed: 0  |
         +-------------------------------------------------------------------------------+
@@ -127,11 +136,22 @@ Use GPS (simple commands)
         +-------------------------------------------------------------------------------+
         |+GPRMC: Fix Time: 19222 12:37:11 Lat: 57.40.431401, Long: 12.0.831660 Speed: 0 |
         +-------------------------------------------------------------------------------+
+
+Loopback Audio Test
+-------------------------
+- AT+QSIDET=10000
+- AT+QAUDLOOP=1
+- AT+CLVL? 
+  - Loudspeaker Volume LevelSelection
+  - AT+CLVL=4 Recommended
+- Factory default AT+QDAI=5,0,0,4,0,1
+- factory default AT+QMIC=20577,14567
+
 Answer call
 -------------------------
-ATV1
-ATA
+- ATV1
+- ATA
 
 Change error code numbers to text
 -------------------------
-AT+CMEE=2
+- AT+CMEE=2
