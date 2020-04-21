@@ -30,7 +30,7 @@ Production settings(default)
 ----------------------------
 
     - Sim card detect 
-      - AT+QSIMDET=1,0 
+      - AT+CFUN=1,1 
         - Need restart to take affect
       - AT+QSIMSTAT?
         - 0 Off, 1 On first parameter
