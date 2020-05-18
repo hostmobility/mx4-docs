@@ -9,10 +9,13 @@ Getting started
 
     - **Activate modem**
         - echo 1 > /opt/hm/pic_attributes/ctrl_modem_on (PWR_KEY)
-	- echo 0 > /opt/hm/pic_attributes/ctrl_modem_ign (RESET_N)
-	  - ctrl_modem_ign active reset if 1.
+	  - active 1 and to power down or sleep use 0.
+	- echo 1 > /opt/hm/pic_attributes/ctrl_modem_emg (RESET_N)
+	  - ctrl_modem_emg active reset if 1.
+	  - read ctrl_modem_emg when 0 it is done with the reset
+	  - Use only emg if you have issue with the modem that can not be resolved using ctrl_modem_on(volatile memory will be reset).
     - **Verify modem**
-        - /opt/hm/modem_status.sh
+        - /opt/hm/modem_status.sh or /opt/hm/pic_attributes/ctrl_modem_status(there are other inputs that can be used also)
     - **Activate simple read**
         - cat /dev/ttyUSB2
     - **Simple write commands**
@@ -39,6 +42,8 @@ Production settings(default)
     - GPS (not confirmed)
       - AT+QGPSCFG="autogps",1
       - AT+QGPSCFG="nmeasrc",1
+    - Activate diversity antenna  
+      - AT+QCFG="diversity" 1
     - AT+CFUN=1,1 or other restart command to make the permanent settings
     
 Use Wvdail to get a broadband connection
