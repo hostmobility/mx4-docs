@@ -46,11 +46,11 @@ Production settings(default)
       - AT+QCFG="diversity" 1
     - AT+CFUN=1,1 or other restart command to make the permanent settings
     
-Use Wvdail to get a broadband connection
+Use WvDial to get a broadband connection
 ----------------------------------------
     - Optional *ln -s /dev/ttyACM2 /dev/modem*
-    - Run wvdailconf
-    - vi /etc/wvdail.conf
+    - Run wvdialconf
+    - vi /etc/wvdial.conf
         - Init1 = ATZ
         - Init2 = AT+CFUN=1
         - Init3 = AT+CGDCONT=1,"IP","internet.telenor.se"
@@ -65,7 +65,7 @@ Use Wvdail to get a broadband connection
         - Auto Reconnect = on
         - New PPPD = yes
         - Auto DNS = 1
-    - Run *wvdail &*
+    - Run *wvdial &*
     - Test *ping 8.8.8.8*
     - Output could look like this:
         +-----------------------------------------------------------+
