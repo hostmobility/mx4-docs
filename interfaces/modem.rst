@@ -44,11 +44,11 @@ Production settings(default)
 
 
 
-Use Wvdail to get a broadband connection
+Use WvDial to get a broadband connection
 ----------------------------------------
     - Optional *ln -s /dev/ttyACM2 /dev/modem*
-    - Run wvdailconf
-    - vi /etc/wvdail.conf
+    - Run wvdialconf
+    - vi /etc/wvdial.conf
         - Init1 = ATZ
         - Init2 = AT+CFUN=1
         - Init3 = ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
@@ -64,7 +64,7 @@ Use Wvdail to get a broadband connection
         - Auto Reconnect = on
         - New PPPD = yes
         - Auto DNS = 1
-    - Run *wvdail &*
+    - Run *wvdial &*
     - Test *ping 8.8.8.8*
     - Output could look like this:
         +-----------------------------------------------------------+
